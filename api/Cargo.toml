@@ -5,4 +5,6 @@ edition = "2024"
 
 [dependencies]
 actix-web = "4"
+config = "0.15.18"
+serde = { version = "1.0.228", features = ["default"] }
 shared = {path = "../shared"}

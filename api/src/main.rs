@@ -1,4 +1,8 @@
+mod env;
+
 use actix_web::{delete, get, post, put, web, App, HttpResponse, HttpServer, Responder};
+use config::Config;
+use crate::env::config::Settings;
 
 #[get("/")]
 async fn hello() -> impl Responder {
@@ -26,6 +30,11 @@ async fn delete_user(path: web::Path<u32>) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+
+    let settings = Settings::new().expect("Failed to load settings");
+
+    println!("Starting server at {}:{}", settings.server.host, settings.server.port);
+
     HttpServer::new(|| {
         App::new()
             .service(hello)
@@ -33,7 +42,7 @@ async fn main() -> std::io::Result<()> {
             .service(update_user)
             .service(delete_user)
     })
-        .bind(("127.0.0.1", 8080))?
+        .bind((settings.server.host, settings.server.port))?
         .run()
         .await
 }
