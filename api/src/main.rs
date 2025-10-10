@@ -1,4 +1,5 @@
 mod env;
+mod entities;
 
 use actix_web::{delete, get, post, put, web, App, HttpResponse, HttpServer, Responder};
 use config::Config;
