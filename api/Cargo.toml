@@ -9,3 +9,6 @@ config = "0.15.18"
 serde = { version = "1.0.228", features = ["default"] }
 sea-orm = { version = "2.0.0-rc.9", features = ["default"] }
 shared = {path = "../shared"}
+log = "0.4.28"
+tracing-subscriber = "0.3.20"
+tracing = "0.1.41"

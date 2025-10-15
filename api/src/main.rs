@@ -2,6 +2,7 @@ mod env;
 mod entities;
 
 use actix_web::{delete, get, post, put, web, App, HttpResponse, HttpServer, Responder};
+use log::Level;
 use crate::env::config::Settings;
 
 #[get("/")]
@@ -34,6 +35,10 @@ async fn main() -> std::io::Result<()> {
     let settings = Settings::new().expect("Failed to load settings");
 
     println!("Starting server at {}:{}", settings.server.host, settings.server.port);
+
+    tracing_subscriber::fmt().with_max_level(tracing::Level::DEBUG)
+        .with_test_writer()
+        .init();
 
     HttpServer::new(|| {
         App::new()
