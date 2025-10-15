@@ -3,4 +3,4 @@ server:
   port: 8080
 
 database:
-  url: "postgres://user:pass@localhost/db"
+  url: "postgres://user:pass@localhost/hotel_manager"
